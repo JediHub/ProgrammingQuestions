@@ -1,0 +1,30 @@
+//JavaScript-C24.2.0 (SpiderMonkey)
+
+const isLastCharMatch = (str1, str2, str1Length, str2Length )  => 
+{ 
+    if ( str2Length === 0) return str1Length; 
+    if ( str1Length === 0) return false; 
+  
+    // If last characters of two strings are matching 
+    if (str1[str1Length-1] === str2[str2Length-1]) 
+        return isLastCharMatch(str1, str2, str1Length-1, str2Length-1); 
+  
+    // If last characters are not matching 
+    return isLastCharMatch(str1, str2, str1Length-1, str2Length); 
+} 
+    
+const findStringMatchCount = (str1, str2) => {
+    let count = 0;
+    let str1Length = str1.length;
+    do{
+    const matchFoundAt = isLastCharMatch(str1, str2, str1Length, str2.length);
+    if (matchFoundAt !== false) {
+            count++;
+           str1Length = matchFoundAt
+        }
+     } 
+    while(matchFoundAt !==false)
+     return count;
+ }
+ print(findStringMatchCount('This is a string, you need compare second string with first string, you are not allowed to use lib methods', 'string, y'));
+ print(findStringMatchCount('Welcome to logical questions section, all this logical questions are documented under company rights', 'logical questions'));
